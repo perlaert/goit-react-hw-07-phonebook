@@ -22,25 +22,30 @@ class ContactList extends Component {
 
   render() {
     const { items, onDeleteContact } = this.props;
+
     return (
       <section>
-        <ul className={style.contactsList}>
-          {items.map(({ id, name, number }) => (
-            <li key={id} className={style.contactItem}>
-              <div className={style.contactInfo}>
-                <p className={style.contactName}>{name}:</p>
-                <p>{number}</p>
-              </div>
-              <button
-                className={style.btn}
-                type="button"
-                onClick={() => onDeleteContact(id)}
-              >
-                Delete
-              </button>
-            </li>
-          ))}
-        </ul>
+        {items.length !== 0 ? (
+          <ul className={style.contactsList}>
+            {items.map(({ id, name, number }) => (
+              <li key={id} className={style.contactItem}>
+                <div className={style.contactInfo}>
+                  <p className={style.contactName}>{name}:</p>
+                  <p>{number}</p>
+                </div>
+                <button
+                  className={style.btn}
+                  type="button"
+                  onClick={() => onDeleteContact(id)}
+                >
+                  Delete
+                </button>
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <p>Phonebook is empty</p>
+        )}
       </section>
     );
   }

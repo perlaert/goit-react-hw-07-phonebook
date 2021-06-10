@@ -21,6 +21,13 @@
   margin-right: 10px;
 }
 
+p {
+  text-align: center;
+  font-size: 19px;
+  font-weight: 600;
+  color: #59719c;
+}
+
 .btn {
   font-size: 14px;
   font-weight: 600;
