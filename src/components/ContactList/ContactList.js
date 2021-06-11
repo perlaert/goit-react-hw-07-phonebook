@@ -1,6 +1,7 @@
 import { Component } from 'react';
 import { connect } from 'react-redux';
-import phonebookOperations from '../../redux/phonebook/phonebook-operations';
+import contactsOperations from '../../redux/phonebook/contacts-operations';
+import contactsSelectors from '../../redux/phonebook/contacts-selectors';
 import PropTypes from 'prop-types';
 import style from './ContactList.module.css';
 
@@ -51,21 +52,13 @@ class ContactList extends Component {
   }
 }
 
-const getVisibleContacts = (allContacts, filter) => {
-  const normalizedFilter = filter.toLowerCase();
-
-  return allContacts.filter(contact =>
-    contact.name.toLowerCase().includes(normalizedFilter),
-  );
-};
-
-const mapStateToProps = ({ contacts: { items, filter } }) => ({
-  items: getVisibleContacts(items, filter),
+const mapStateToProps = state => ({
+  items: contactsSelectors.getVisibleContacts(state),
 });
 
 const mapDispatchtoProps = dispatch => ({
-  onDeleteContact: id => dispatch(phonebookOperations.deleteContact(id)),
-  fetchContacts: () => dispatch(phonebookOperations.fetchContacts()),
+  onDeleteContact: id => dispatch(contactsOperations.deleteContact(id)),
+  fetchContacts: () => dispatch(contactsOperations.fetchContacts()),
 });
 
 export default connect(mapStateToProps, mapDispatchtoProps)(ContactList);

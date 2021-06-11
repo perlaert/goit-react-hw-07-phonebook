@@ -9,7 +9,7 @@ import {
   deleteContactRequest,
   deleteContactSuccess,
   deleteContactError,
-} from './phonebook-actions';
+} from './contacts-actions';
 
 axios.defaults.baseURL = 'http://localhost:3004';
 
